@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace StringBuilderDemo {
   class Program {
 
     static void Main(string[] args) {
-      int iterations = 10000;
+      int iterations = 1000;
       string baseString = "I am a string that wants some friends.";
       string endString = string.Empty;
 
@@ -77,6 +78,13 @@ namespace StringBuilderDemo {
       Console.WriteLine("Press any key to continue...");
       Console.WriteLine();
       Console.ReadKey(true);
+    }
+
+    public static void MoreGenericExecute(Delegate myFunction) {
+      MethodInfo info = myFunction.GetMethodInfo();
+      ParameterInfo[] myParameters = info.GetParameters();
+      foreach (var param in myParameters) {
+      }
     }
   }
 }
