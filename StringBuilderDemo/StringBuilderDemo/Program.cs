@@ -18,6 +18,7 @@ namespace StringBuilderDemo {
 
       Console.WriteLine("Tap any key to get started...");
       Console.ReadKey(true);
+      Console.WriteLine();
 
       StringMaker maker = StringConcatenation;
       BenchMarker.Execute("String concatenation", baseString, iterations, maker);
@@ -28,17 +29,20 @@ namespace StringBuilderDemo {
       // anonymous function!!!
       BenchMarker.Execute("Anonymouse", baseString, iterations, 
         delegate (string anonbase, int anonerations) {
-        for (int i = 0; i < anonerations; i++) { 
-            // do nothing 
+          string result = string.Empty;
+        for (int i = 0; i < anonerations; i++) {
+            result += anonbase;
           }
-          Console.Write("Mouse was here!\r\n");
+        Console.WriteLine("Result is {0} characters long.", result.Length);
       });
 
       // lambda method!!!
       StringMaker lambda = (lambdaString, lambdaIterations) => {
+        string result = string.Empty;
         for (int i = 0; i < lambdaIterations; i++) {
-          // do nothing, but in a lambda way!
+          result += lambdaString;
         }
+        Console.WriteLine("Result is {0} characters long.", result.Length);
       };
 
       BenchMarker.Execute("Lambdata - the forbidden type", baseString, iterations,
@@ -71,6 +75,7 @@ namespace StringBuilderDemo {
       stopwatch.Stop();
       Console.WriteLine("Processing took: " + stopwatch.ElapsedMilliseconds + " milliseconds.");
       Console.WriteLine("Press any key to continue...");
+      Console.WriteLine();
       Console.ReadKey(true);
     }
   }
