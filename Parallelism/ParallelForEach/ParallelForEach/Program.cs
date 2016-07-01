@@ -8,20 +8,22 @@ using System.Diagnostics;
 namespace ParallelForEach {
   class Program {
     static void Main(string[] args) {
+      const int ITEMCOUNT = 1000;
       List<int> testList = new List<int>();
-      for (int i = 0; i < 1000; i++) {
+      System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+      for (int i = 0; i < ITEMCOUNT; i++) {
         testList.Add(i);
       }
 
-      Console.WriteLine("foreach example, no query, no parallelism...");
-      System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-      stopwatch.Start();
-      foreach (var item in testList) {
-        Process(item);
-      }
-      stopwatch.Stop();
-      Console.WriteLine("Elapsed time {0} ms.", stopwatch.ElapsedMilliseconds);
-      Console.ReadLine();
+      //Console.WriteLine("foreach example, no query, no parallelism...");
+      //stopwatch.Start();
+      //foreach (var item in testList) {
+      //  Process(item);
+      //}
+      //stopwatch.Stop();
+      //Console.WriteLine("Elapsed time {0} ms.", stopwatch.ElapsedMilliseconds);
+      //Console.ReadLine();
 
       Console.WriteLine("Parallel.ForEach example...");
       stopwatch.Reset();
@@ -57,6 +59,25 @@ namespace ParallelForEach {
       Console.ReadLine();
 
 
+      Console.WriteLine("Bad Parallel.Invoke example...");
+      stopwatch.Reset();
+      stopwatch.Start();
+      foreach (var item in testList) {
+        Parallel.Invoke(() => Process(item));
+      }
+      stopwatch.Stop();
+      Console.WriteLine("Elapsed time {0} ms.", stopwatch.ElapsedMilliseconds);
+      Console.ReadLine();
+
+      Console.WriteLine("Parallel.Invoke example...");
+      stopwatch.Reset();
+      stopwatch.Start();
+      for (int i = 0; i < ITEMCOUNT; i = i + 5) {
+        Parallel.Invoke(() => Process(i), () => Process(i+1), () => Process(i+2), () => Process(i+3), () => Process(i+4));
+      }
+      stopwatch.Stop();
+      Console.WriteLine("Elapsed time {0} ms.", stopwatch.ElapsedMilliseconds);
+      Console.ReadLine();
     }
 
     public static void Process(int i) {
