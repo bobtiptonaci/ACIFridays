@@ -16,9 +16,15 @@ namespace AsynAwaitExperiment {
       int result = await GetRandomSlowlyAsync();
       return result;
     }
-
+    private static async Task<int> WaitForSomething() {
+      await Task.Run(() => System.Threading.Thread.Sleep(3000));
+      return 1;
+    }
     private static async Task<int> GetRandomSlowlyAsync() {
-      await Task.Run(() => { for (long i = 0; i < SLOWFACTOR; i++) { } });
+      // do the part that you don't need to wait for BEFORE you call await
+      await WaitForSomething();
+      //await Task.Run(() => { for (long i = 0; i < SLOWFACTOR; i++) { } });
+      // you'll be returned to your calling function while this runs
       return GetRandom();
     }
     public static int GetRandomSlowly() {

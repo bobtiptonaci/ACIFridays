@@ -29,6 +29,7 @@
       this.lblFastResult = new System.Windows.Forms.Label();
       this.lblSlowAsyncResult = new System.Windows.Forms.Label();
       this.cmdDoSlowAsync = new System.Windows.Forms.Button();
+      this.txtOutput = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // cmdDoSlow
@@ -82,11 +83,20 @@
       this.cmdDoSlowAsync.UseVisualStyleBackColor = true;
       this.cmdDoSlowAsync.Click += new System.EventHandler(this.cmdDoSlowAsync_Click);
       // 
+      // txtOutput
+      // 
+      this.txtOutput.Location = new System.Drawing.Point(453, 51);
+      this.txtOutput.Multiline = true;
+      this.txtOutput.Name = "txtOutput";
+      this.txtOutput.Size = new System.Drawing.Size(220, 200);
+      this.txtOutput.TabIndex = 6;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(709, 407);
+      this.Controls.Add(this.txtOutput);
       this.Controls.Add(this.lblSlowAsyncResult);
       this.Controls.Add(this.cmdDoSlowAsync);
       this.Controls.Add(this.lblFastResult);
@@ -96,6 +106,7 @@
       this.Name = "Form1";
       this.Text = "Form1";
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -107,6 +118,7 @@
     private System.Windows.Forms.Label lblFastResult;
     private System.Windows.Forms.Label lblSlowAsyncResult;
     private System.Windows.Forms.Button cmdDoSlowAsync;
+    private System.Windows.Forms.TextBox txtOutput;
   }
 }
 

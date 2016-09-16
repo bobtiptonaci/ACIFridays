@@ -1,7 +1,4 @@
-﻿using static ExerciseAutoLock.DoorLockControl;
-using static ExerciseAutoLock.Speedometer;
-
-namespace ExerciseAutoLock {
+﻿namespace ExerciseAutoLock {
   public class CarWatcher {
     private Car myCar;
     public CarWatcher(Car car) {
@@ -16,8 +13,8 @@ namespace ExerciseAutoLock {
     }
 
     private static void CheckSpeed(double speed, Car car) {
-      CheckLockState(speed: speed, doors: car.Doors);
-      UpdateSpeed(speed: speed);
+      DoorLockControl.CheckLockState(speed: speed, doors: car.Doors);
+      Speedometer.UpdateSpeed(speed: speed);
     }
   }
 }

@@ -25,10 +25,23 @@ namespace AsynAwaitExperiment {
       lblSlowResult.Text = number.ToString();
     }
 
-    private async void cmdDoSlowAsync_Click(object sender, EventArgs e) {
+    private void cmdDoSlowAsync_Click(object sender, EventArgs e) {
+      txtOutput.Text = string.Empty;
+      txtOutput.Text += "About to call...\r\n";
+      ActuallyGetNumber();
+      txtOutput.Text += "When did I happen?\r\n";
+    }
+
+    private async void dosomething() {
+
+    }
+    private async void ActuallyGetNumber() {
       lblSlowAsyncResult.Text = "calculating...";
+      txtOutput.Text += "Set calculating caption\r\n";
       int number = await NumberGetter.GetRandomAsync();
+      txtOutput.Text += "Got random number\r\n";
       lblSlowAsyncResult.Text = number.ToString();
+      txtOutput.Text += "Displayed random number\r\n";
     }
   }
 }

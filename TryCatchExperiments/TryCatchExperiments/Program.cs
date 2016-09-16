@@ -49,7 +49,7 @@ namespace TryCatchExperiments {
     public static void RethrownException() {
       try {
         throw new SystemException("SystemException in Rethrown");
-      }
+      } 
       catch (Exception e) {
         Console.WriteLine("Exception thrown in RethrownException");
         MonkeyException newException = new MonkeyException("Rethrown monkey", e);
